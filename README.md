@@ -1,10 +1,14 @@
-![](media/datasloth.png | width=100)
+<p align="center">
+  <img width="300" src="media/datasloth.png">
+</p>
 
 # DataSloth
 _Natural language Pandas queries powered by GPT-3_
 
 
-![](media/quick_example.png)
+<p align="center">
+  <img width="800" src="media/quick_example.png">
+</p>
 
 
 ## Installation

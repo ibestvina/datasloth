@@ -6,7 +6,7 @@ def readme():
 
 setup(
     name='datasloth',
-    version='0.3',
+    version='0.4',
     description='Natural language Pandas queries and data generation',
     url='http://github.com/ibestvina/datasloth',
     author='Ivan Bestvina',

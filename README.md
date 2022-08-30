@@ -34,7 +34,7 @@ Once your data is loaded, simply run
 to query the data.
 
 
-## Improving results
+### Improving results
 
 To improve the results, you can set custom descriptions of your tables:
 
@@ -42,7 +42,7 @@ To improve the results, you can set custom descriptions of your tables:
 
 By default, table descriptions consist of information about each column in the table. You can include this default description in your custom one by adding a `{COLUMNS_SUMMARY}` placeholder. See the detailed example notebook in the examples folder for more information.
 
-## Solving issues
+### Solving issues
 
 A lot of times, if the returned data is not correct, or not fully formatted the way you want, it helps to rephrase the question or give specific pointers to how the final data should look like. To better understand where things might have gone wrong, use `show_query=True` in the `sloth.query()`, or run `sloth.show_last_query()` after the prompt has finished to print out the SQL query used (whithout rerunning the engine).
 

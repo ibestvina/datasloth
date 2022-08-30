@@ -91,7 +91,10 @@ SQL query for SQLite:
         self.last_gpt_response = None
 
     @staticmethod
-    def dataframes_summary(env=None, ignore='^_'):
+    def dataframes_summary(env=None, ignore='^_') -> str:
+        """
+        Summary of all DataFrames available in the namespace, ignoring those matching the 'ignore' regex.
+        """
         summary_lines = ['Tables available in the database, with their additional information, are:']
         table_count = 0
         for name, value in env.items():
@@ -106,6 +109,12 @@ SQL query for SQLite:
         return '\n'.join(summary_lines)
 
     def query(self, query, env=None, show_query=False):
+        """
+        Query all Pandas DataFrames available in the namespace with a natural language query.
+        To limit the tables used in the query, set the 'env' variable to a dict of tables
+        (keys are table names, and values are table objects), or set it to globals() or locals().
+        To learn more, check pandasql docs.
+        """
         env = env or get_outer_frame_variables()
         query = query[0].lower() + query[1:]
         prompt = self.dataframes_summary(env)
@@ -140,7 +149,6 @@ SQL query for SQLite:
         """
         Generates a random dataset based on the description and a list of columns.
         """
-
         rows = []
         while len(rows) < n_rows:
             prompt = f'Fill the table below with {min(n_rows - len(rows) + 5, 30)} random rows about {description}\n\n'
@@ -171,6 +179,7 @@ SQL query for SQLite:
             print(f'[->]\n{self.last_prompt[1]}')
 
     def show_last_query(self):
+        """Print the SQL query generated in the last sloth.query() call."""
         if self.last_prompt:
             print(self.last_prompt[1])
 
@@ -187,6 +196,7 @@ def get_outer_frame_variables():
     return variables
 
 def column_info(col):
+    """Info about a specific column, different depending on its type"""
     if is_string_dtype(col) or col.dtype == 'category':
         unique = col.unique().tolist()
         summary = 'unique values: ' + ', '.join(map(str, unique[:30]))

@@ -123,7 +123,7 @@ SQL query for SQLite:
             return
         prompt += DataSloth.prompt_format.format(QUERY=query)
         response = openai.Completion.create(
-            model="text-davinci-002",
+            model="text-davinci-003",
             prompt=prompt,
             temperature=0,
             max_tokens=1000,
